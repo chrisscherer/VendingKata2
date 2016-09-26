@@ -73,5 +73,16 @@ namespace VendingKataTake2Tests
 			//Assert the Coin Return Amount reflects zero
 			Assert.AreEqual (0, testVendingMachine.CoinReturnAmount);
 		}
+
+		[Test]
+		public void ClearCoinReturn_ReturnsTheCorrectAmountFromTheCoinReturn ()
+		{
+			testVendingMachine.InsertCoin (5);
+			testVendingMachine.ReturnCoins ();
+
+			int returnedAmount = testVendingMachine.ClearCoinReturn ();
+
+			Assert.AreEqual (5, returnedAmount);
+		}
 	}
 }

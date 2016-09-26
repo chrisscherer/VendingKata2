@@ -29,6 +29,7 @@ namespace VendingKataTake2
 			DepositedAmount = 0;
 		}
 
+		//TakeCoinReturnCoins? I wasn't sure what the best name for this method is/was
 		public void ClearCoinReturn ()
 		{
 			CoinReturnAmount = 0;
