@@ -21,11 +21,19 @@ namespace VendingKataTake2Tests
 		}
 
 		[Test]
-		public void InsertCoin_ReturnTrueIfValid ()
+		public void InsertCoin_ReturnTrueIfValidCoinDimensions ()
 		{
 			bool result = testVendingMachine.InsertCoin (5);
 
 			Assert.AreEqual (true, result);
+		}
+
+		[Test]
+		public void InsertCoin_ReturnFalseIfInvalidCoinDimensions ()
+		{
+			bool result = testVendingMachine.InsertCoin (-1);
+
+			Assert.AreEqual (false, result);
 		}
 	}
 }
