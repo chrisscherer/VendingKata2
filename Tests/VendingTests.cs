@@ -16,8 +16,11 @@ namespace VendingKataTake2Tests
 		}
 
 		[Test]
-		public void Test_Name ()
+		public void InsertCoin_ReturnTrueIfValid ()
 		{
+			bool result = testVendingMachine.InsertCoin (5);
+
+			Assert.AreEqual (true, result);
 		}
 	}
 }
