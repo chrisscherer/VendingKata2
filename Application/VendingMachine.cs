@@ -6,6 +6,9 @@ namespace VendingKataTake2
 	{
 		public bool InsertCoin (int coinSize)
 		{
+			if (coinSize <= 0)
+				return false;
+			
 			return true;
 		}
 
