@@ -21,7 +21,7 @@ namespace VendingKataTake2Tests
 		}
 
 		[Test]
-		public void InsertCoin_ReturnTrueIfValidCoinDimensions ()
+		public void InsertCoin_ReturnTrueIfCoinIsNickel ()
 		{
 			bool result = testVendingMachine.InsertCoin (5);
 
@@ -29,9 +29,17 @@ namespace VendingKataTake2Tests
 		}
 
 		[Test]
-		public void InsertCoin_ReturnFalseIfInvalidCoinDimensions ()
+		public void InsertCoin_ReturnFalseIfCoinSizeIsNegative ()
 		{
 			bool result = testVendingMachine.InsertCoin (-1);
+
+			Assert.AreEqual (false, result);
+		}
+
+		[Test]
+		public void InsertCoin_ReturnFalseIfCoinSizeIsPositiveAndNotRealCoin ()
+		{
+			bool result = testVendingMachine.InsertCoin (4);
 
 			Assert.AreEqual (false, result);
 		}

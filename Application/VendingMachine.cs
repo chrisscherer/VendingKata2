@@ -20,7 +20,6 @@ namespace VendingKataTake2
 			DepositedAmount += amountToAdd;
 		}
 
-
 		public static void Main (string[] args)
 		{
 			Console.WriteLine ("Hello World!");
