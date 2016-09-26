@@ -35,5 +35,13 @@ namespace VendingKataTake2Tests
 
 			Assert.AreEqual (false, result);
 		}
+
+		[Test]
+		public void InsertCoin_UpdatesCurrentDepositedAmount ()
+		{
+			testVendingMachine.InsertCoin (5);
+
+			Assert.AreEqual (5, testVendingMachine.Amount);
+		}
 	}
 }
