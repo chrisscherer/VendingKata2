@@ -4,3 +4,9 @@
 /Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/VendingKataTake2Tests.exe
 /Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/VendingKataTake2Tests.exe.mdb
 /Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/nunit.framework.dll
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/VendingKataTake2.exe
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/VendingKataTake2.exe.mdb
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/VendingKataTake2Tests.dll.mdb
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/VendingKataTake2Tests.dll
+/Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/VendingKataTake2Tests.dll
+/Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/VendingKataTake2Tests.dll.mdb

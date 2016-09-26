@@ -1,9 +1,19 @@
 ﻿<Properties StartupItem="VendingKataTake2.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug|x86" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Program.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="../Tests/VendingTests.cs">
     <Files>
-      <File FileName="Program.cs" Line="1" Column="1" />
+      <File FileName="VendingMachine.cs" Line="5" Column="9" />
+      <File FileName="../Tests/VendingTests.cs" Line="9" Column="27" />
     </Files>
+    <Pads>
+      <Pad Id="MonoDevelop.NUnit.TestPad">
+        <State name="__root__">
+          <Node name="VendingKataTake2" expanded="True">
+            <Node name="VendingKataTake2Tests" selected="True" />
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />
