@@ -26,13 +26,17 @@ namespace VendingKataTake2
 
 		public void ReturnCoins ()
 		{
+			CoinReturnAmount += DepositedAmount;
 			DepositedAmount = 0;
 		}
 
 		//TakeCoinReturnCoins? I wasn't sure what the best name for this method is/was
-		public void ClearCoinReturn ()
+		public int ClearCoinReturn ()
 		{
+			int amountToReturn = CoinReturnAmount;
 			CoinReturnAmount = 0;
+
+			return amountToReturn;
 		}
 
 		private void AddAmount (int amountToAdd)
