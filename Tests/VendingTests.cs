@@ -41,7 +41,7 @@ namespace VendingKataTake2Tests
 		{
 			testVendingMachine.InsertCoin (5);
 
-			Assert.AreEqual (5, testVendingMachine.Amount);
+			Assert.AreEqual (5, testVendingMachine.DepositedAmount);
 		}
 	}
 }
