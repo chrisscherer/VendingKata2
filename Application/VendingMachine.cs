@@ -22,6 +22,11 @@ namespace VendingKataTake2
 			return true;
 		}
 
+		public void ReturnCoins ()
+		{
+			DepositedAmount = 0;
+		}
+
 		private void AddAmount (int amountToAdd)
 		{
 			DepositedAmount += amountToAdd;
