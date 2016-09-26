@@ -1,0 +1,6 @@
+/Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/VendingKataTake2Tests.exe.mdb
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/VendingKataTake2Tests.exe
+/Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/VendingKataTake2Tests.exe
+/Users/christopherscherer/Projects/VendingKata2/Tests/obj/x86/Debug/VendingKataTake2Tests.exe.mdb
+/Users/christopherscherer/Projects/VendingKata2/Tests/bin/Debug/nunit.framework.dll
