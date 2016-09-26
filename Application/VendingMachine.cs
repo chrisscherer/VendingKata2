@@ -7,6 +7,8 @@ namespace VendingKataTake2
 	{
 		public int DepositedAmount { get; private set; }
 
+		public int CoinReturnAmount { get; private set; }
+
 		public Dictionary<int, int> ValidCoins = new Dictionary<int, int> () {
 			{ 5, 5 },
 			{ 10, 10 },
@@ -25,6 +27,11 @@ namespace VendingKataTake2
 		public void ReturnCoins ()
 		{
 			DepositedAmount = 0;
+		}
+
+		public void ClearCoinReturn ()
+		{
+			CoinReturnAmount = 0;
 		}
 
 		private void AddAmount (int amountToAdd)
