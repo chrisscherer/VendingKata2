@@ -55,7 +55,14 @@ namespace VendingKataTake2
 
 		private bool CoinIsValid (Coin coin)
 		{
-			return (ValidCoins.ContainsKey (coin.Size) && ValidCoins [coin.Size] == coin.Weight);
+			int coinWeight;
+
+			//I believe this is the most efficient way to test both that the Key exists and that the value is the one we want.
+			if (ValidCoins.TryGetValue (coin.Size, out coinWeight)) {
+				return coinWeight == coin.Weight;
+			} else {
+				return false;
+			}
 		}
 
 		private void ResetDepositedAmount ()
