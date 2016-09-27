@@ -156,5 +156,19 @@ namespace VendingKataTake2Tests
 
 			Assert.AreEqual (0M, testVendingMachine.GetDepositedTotal ());
 		}
+
+		[Test]
+		public void PurchaseProduct_ReturnsCoinsAbovePurchase ()
+		{
+			Coin c = new Coin (25, 25);
+			testVendingMachine.InsertCoin (c);
+			testVendingMachine.InsertCoin (c);
+			testVendingMachine.InsertCoin (c);
+
+			testVendingMachine.PurchaseProduct ("Candy");
+			List<Coin> returnedCoins = testVendingMachine.ClearCoinReturn ();
+
+			Assert.AreEqual (new List<Coin> () { new Coin (10, 10), new Coin (5, 5) }, returnedCoins);
+		}
 	}
 }
