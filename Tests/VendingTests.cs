@@ -95,5 +95,13 @@ namespace VendingKataTake2Tests
 
 			Assert.AreEqual (new List<Coin> () { testNickel }, returnedCoins);
 		}
+
+		[Test]
+		public void GetProductList_ReturnsAListOfProducts ()
+		{
+			List<Product> products = testVendingMachine.GetProductList ();
+
+			Assert.AreEqual (testProducts, products);
+		}
 	}
 }
