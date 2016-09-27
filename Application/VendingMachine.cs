@@ -9,21 +9,22 @@ namespace VendingKataTake2
 
 		public List<Coin> CoinReturnAmount { get; private set; }
 
-		public VendingMachine ()
-		{
-			DepositedAmount = new List<Coin> ();
-			CoinReturnAmount = new List<Coin> ();
-		}
-
 		public Dictionary<int, int> ValidCoins = new Dictionary<int, int> () {
 			{ 5, 5 },
 			{ 10, 10 },
 			{ 25, 25 }
 		};
 
+		public VendingMachine ()
+		{
+			DepositedAmount = new List<Coin> ();
+			CoinReturnAmount = new List<Coin> ();
+		}
+
+
 		public bool InsertCoin (Coin insertedCoin)
 		{
-			if (!CoinIsValid (insertedCoin.Size, insertedCoin.Weight))
+			if (!CoinIsValid (insertedCoin))
 				return false;
 
 			AddAmount (insertedCoin);
@@ -45,14 +46,16 @@ namespace VendingKataTake2
 			return amountToReturn;
 		}
 
+
+
 		private void AddAmount (Coin coinToAdd)
 		{
 			DepositedAmount.Add (coinToAdd);
 		}
 
-		private bool CoinIsValid (int coinSize, int coinWeight)
+		private bool CoinIsValid (Coin coin)
 		{
-			return (ValidCoins.ContainsKey (coinSize) && ValidCoins [coinSize] == coinWeight);
+			return (ValidCoins.ContainsKey (coin.Size) && ValidCoins [coin.Size] == coin.Weight);
 		}
 
 		private void ResetDepositedAmount ()
