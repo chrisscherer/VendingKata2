@@ -23,7 +23,9 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void InsertCoin_ReturnTrueIfCoinIsNickel ()
 		{
-			bool result = testVendingMachine.InsertCoin (5);
+			Coin testNickel = new Coin (5, 5);
+
+			bool result = testVendingMachine.InsertCoin (testNickel);
 
 			Assert.AreEqual (true, result);
 		}
@@ -31,7 +33,9 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void InsertCoin_ReturnFalseIfCoinSizeIsNegative ()
 		{
-			bool result = testVendingMachine.InsertCoin (-1);
+			Coin testFakeCoin = new Coin (-1, -1);
+
+			bool result = testVendingMachine.InsertCoin (testFakeCoin);
 
 			Assert.AreEqual (false, result);
 		}
@@ -39,7 +43,9 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void InsertCoin_ReturnFalseIfCoinSizeIsPositiveAndNotRealCoin ()
 		{
-			bool result = testVendingMachine.InsertCoin (4);
+			Coin testFakeCoin = new Coin (4, 4);
+
+			bool result = testVendingMachine.InsertCoin (testFakeCoin);
 
 			Assert.AreEqual (false, result);
 		}
@@ -47,7 +53,9 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void InsertCoin_UpdatesCurrentDepositedAmount ()
 		{
-			testVendingMachine.InsertCoin (5);
+			Coin testNickel = new Coin (5, 5);
+
+			testVendingMachine.InsertCoin (testNickel);
 
 			Assert.AreEqual (5, testVendingMachine.DepositedAmount);
 		}
@@ -64,7 +72,8 @@ namespace VendingKataTake2Tests
 		public void ClearCoinReturn_UpdatesCurrentCoinReturnAmountToZero ()
 		{
 			//Arrange our preconditions to using the Clear Coin Return Method
-			testVendingMachine.InsertCoin (5);
+			Coin testNickel = new Coin (5, 5);
+			testVendingMachine.InsertCoin (testNickel);
 			testVendingMachine.ReturnCoins ();
 
 			//Act by running the clear coin return method
@@ -77,7 +86,8 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void ClearCoinReturn_ReturnsTheCorrectAmountFromTheCoinReturn ()
 		{
-			testVendingMachine.InsertCoin (5);
+			Coin testNickel = new Coin (5, 5);
+			testVendingMachine.InsertCoin (testNickel);
 			testVendingMachine.ReturnCoins ();
 
 			int returnedAmount = testVendingMachine.ClearCoinReturn ();

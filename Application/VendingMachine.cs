@@ -15,12 +15,12 @@ namespace VendingKataTake2
 			{ 25, 25 }
 		};
 
-		public bool InsertCoin (int coinSize)
+		public bool InsertCoin (Coin insertedCoin)
 		{
-			if (!CoinIsValid (coinSize))
+			if (!CoinIsValid (insertedCoin.Size, insertedCoin.Weight))
 				return false;
 
-			AddAmount (coinSize);
+			AddAmount (insertedCoin);
 			return true;
 		}
 
@@ -39,14 +39,14 @@ namespace VendingKataTake2
 			return amountToReturn;
 		}
 
-		private void AddAmount (int amountToAdd)
+		private void AddAmount (Coin coinToAdd)
 		{
-			DepositedAmount += amountToAdd;
+			DepositedAmount += coinToAdd.Size;
 		}
 
-		private bool CoinIsValid (int coinDimensions)
+		private bool CoinIsValid (int coinSize, int coinWeight)
 		{
-			return ValidCoins.ContainsKey (coinDimensions);
+			return (ValidCoins.ContainsKey (coinSize) && ValidCoins [coinSize] == coinWeight);
 		}
 
 		private void ResetDepositedAmount ()

@@ -2,6 +2,7 @@
 
 namespace VendingKataTake2
 {
+	//The size and weight of the coin are the same as it's value for ease of use.
 	public class Coin
 	{
 		public int Weight { get; private set; }
