@@ -17,9 +17,9 @@ namespace VendingKataTake2Tests
 			new Product ("Candy", .65M)
 		};
 
-		Coin testQuarter = new Coin (25, 25);
-		Coin testDime = new Coin (10, 10);
-		Coin testNickel = new Coin (5, 5);
+		Coin testQuarter = new Coin (.25M, .25M);
+		Coin testDime = new Coin (.10M, .10M);
+		Coin testNickel = new Coin (.05M, .05M);
 
 		[SetUp] public void Init ()
 		{
@@ -165,7 +165,7 @@ namespace VendingKataTake2Tests
 			testVendingMachine.PurchaseProduct ("Chips");
 			List<Coin> returnedCoins = testVendingMachine.ClearCoinReturn ();
 
-			Assert.AreEqual (new List<Coin> () { new Coin (10, 10), new Coin (5, 5) }, returnedCoins);
+			Assert.AreEqual (new List<Coin> () { testDime, testNickel }, returnedCoins);
 		}
 	}
 }

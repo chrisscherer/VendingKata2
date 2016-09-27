@@ -12,10 +12,10 @@ namespace VendingKataTake2
 
 		private List<Product> Products { get; set; }
 
-		public Dictionary<int, int> ValidCoins = new Dictionary<int, int> () {
-			{ 5, 5 },
-			{ 10, 10 },
-			{ 25, 25 }
+		public Dictionary<decimal, decimal> ValidCoins = new Dictionary<decimal, decimal> () {
+			{ .05M, .05M },
+			{ .10M, .10M },
+			{ .25M, .25M }
 		};
 
 		public VendingMachine ()
@@ -81,25 +81,31 @@ namespace VendingKataTake2
 		//where as the DepositedAmount is a list of coins.
 		public decimal GetDepositedTotal ()
 		{
-			return DepositedAmount.Sum (coin => coin.Size) * .01M;
+			return DepositedAmount.Sum (coin => coin.Size);
 		}
 
+		//This ugliness was caused by my deciding to try to model my coin containers in a more real world application style
 		private void RefundExtraCoins (decimal extraFunds)
 		{
 			while (extraFunds > 0M) {
-				if (extraFunds >= .25M) {
-					CoinReturnAmount.Add (new Coin (25, 25));
-					extraFunds -= .25M;
-				} else if (extraFunds >= .10M) {
-					CoinReturnAmount.Add (new Coin (10, 10));
-					extraFunds -= .10M;
-				} else if (extraFunds >= .05M) {
-					CoinReturnAmount.Add (new Coin (5, 5));
-					extraFunds -= .05M;
-				} else {
-					break;
-				}
+				Console.WriteLine (extraFunds);
+				decimal largestCoin = GetLargestCoinIncrement (extraFunds);
+				Console.WriteLine (largestCoin);
+				CoinReturnAmount.Add (new Coin (largestCoin, largestCoin));
+				extraFunds -= largestCoin;
 			}
+		}
+
+		private decimal GetLargestCoinIncrement (decimal input)
+		{
+			if (input >= .25M)
+				return .25M;
+			else if (input >= .10M)
+				return .10M;
+			else if (input >= .05M)
+				return .05M;
+			else
+				return 0M;
 		}
 
 		private void AddAmount (Coin coinToAdd)
@@ -109,7 +115,7 @@ namespace VendingKataTake2
 
 		private bool CoinIsValid (Coin coin)
 		{
-			int coinWeight;
+			decimal coinWeight;
 
 			//I believe this is the most efficient way to test both that the Key exists and that the value is the one we want.
 			if (ValidCoins.TryGetValue (coin.Size, out coinWeight)) {
