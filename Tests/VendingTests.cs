@@ -113,5 +113,13 @@ namespace VendingKataTake2Tests
 
 			Assert.AreEqual (testProducts, products);
 		}
+
+		[Test]
+		public void GetProductPrice_ReturnsThePriceOfAGivenProduct ()
+		{
+			decimal productPrice = testVendingMachine.GetProductPrice ("Candy");
+
+			Assert.AreEqual (.65M, productPrice);
+		}
 	}
 }
