@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using System.Collections.Generic;
 
 namespace VendingKataTake2
@@ -54,6 +55,11 @@ namespace VendingKataTake2
 		public List<Product> GetProductList ()
 		{
 			return Products;
+		}
+
+		public decimal GetProductPrice (string productName)
+		{
+			return Products.Single (x => x.Name == productName).Price;
 		}
 
 		private void AddAmount (Coin coinToAdd)
