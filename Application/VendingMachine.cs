@@ -57,9 +57,16 @@ namespace VendingKataTake2
 			return Products;
 		}
 
+		//Is introducing linq at this point breaking TDD? I still don't quite know how hard I'm supposed to stick to
+		//only adding things when they're absolutely necessary for getting a test green vs. readability and ease of writing
 		public decimal GetProductPrice (string productName)
 		{
 			return Products.Single (x => x.Name == productName).Price;
+		}
+
+		public bool PurchaseProduct (string productName)
+		{
+			return true;
 		}
 
 		private void AddAmount (Coin coinToAdd)
