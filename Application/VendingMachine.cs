@@ -9,6 +9,8 @@ namespace VendingKataTake2
 
 		public List<Coin> CoinReturnAmount { get; private set; }
 
+		private List<Product> Products { get; set; }
+
 		public Dictionary<int, int> ValidCoins = new Dictionary<int, int> () {
 			{ 5, 5 },
 			{ 10, 10 },
@@ -19,6 +21,9 @@ namespace VendingKataTake2
 		{
 			DepositedAmount = new List<Coin> ();
 			CoinReturnAmount = new List<Coin> ();
+			Products = new List<Product> ();
+
+			InitializeProducts ();
 		}
 
 
@@ -46,7 +51,10 @@ namespace VendingKataTake2
 			return amountToReturn;
 		}
 
-
+		public List<Product> GetProductList ()
+		{
+			return Products;
+		}
 
 		private void AddAmount (Coin coinToAdd)
 		{
@@ -73,6 +81,13 @@ namespace VendingKataTake2
 		private void ResetCoinReturnAmount ()
 		{
 			CoinReturnAmount.Clear ();
+		}
+
+		private void InitializeProducts ()
+		{
+			Products.Add (new Product ("Cola", 1.00M));
+			Products.Add (new Product ("Chips", .50M));
+			Products.Add (new Product ("Candy", .65M));
 		}
 
 		public static void Main (string[] args)

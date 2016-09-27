@@ -11,6 +11,12 @@ namespace VendingKataTake2Tests
 	{
 		VendingMachine testVendingMachine;
 
+		List<Product> testProducts = new List<Product> () {
+			new Product ("Cola", 1.00M),
+			new Product ("Chips", .50M),
+			new Product ("Candy", .65M)
+		};
+
 		[SetUp] public void Init ()
 		{
 			testVendingMachine = new VendingMachine ();
@@ -99,6 +105,10 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void GetProductList_ReturnsAListOfProducts ()
 		{
+			//I originally set this test up this way, but I'm wondering if it wouldn't be better to have the Property be
+			//a public getter with private setter and just test that the values are being initialized correctly.
+			//The only problem with doing it that way is that the product list doesn't need to be public outside of being read
+			//and should probably stay private.
 			List<Product> products = testVendingMachine.GetProductList ();
 
 			Assert.AreEqual (testProducts, products);
