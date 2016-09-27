@@ -66,7 +66,12 @@ namespace VendingKataTake2
 
 		public bool PurchaseProduct (string productName)
 		{
-			return true;
+			return GetDepositedTotal () >= GetProductPrice (productName);
+		}
+
+		public decimal GetDepositedTotal ()
+		{
+			return DepositedAmount.Sum (coin => coin.Size) * .01M;
 		}
 
 		private void AddAmount (Coin coinToAdd)
