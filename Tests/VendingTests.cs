@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using VendingKataTake2;
 using NUnit.Framework;
 
@@ -57,7 +58,7 @@ namespace VendingKataTake2Tests
 
 			testVendingMachine.InsertCoin (testNickel);
 
-			Assert.AreEqual (5, testVendingMachine.DepositedAmount);
+			Assert.AreEqual (new List<Coin> { testNickel }, testVendingMachine.DepositedAmount);
 		}
 
 		[Test]
@@ -65,7 +66,7 @@ namespace VendingKataTake2Tests
 		{
 			testVendingMachine.ReturnCoins ();
 
-			Assert.AreEqual (0, testVendingMachine.DepositedAmount);
+			Assert.AreEqual (new List<Coin> (), testVendingMachine.DepositedAmount);
 		}
 
 		[Test]
@@ -80,7 +81,7 @@ namespace VendingKataTake2Tests
 			testVendingMachine.ClearCoinReturn ();
 
 			//Assert the Coin Return Amount reflects zero
-			Assert.AreEqual (0, testVendingMachine.CoinReturnAmount);
+			Assert.AreEqual (new List<Coin> (), testVendingMachine.CoinReturnAmount);
 		}
 
 		[Test]
@@ -90,9 +91,9 @@ namespace VendingKataTake2Tests
 			testVendingMachine.InsertCoin (testNickel);
 			testVendingMachine.ReturnCoins ();
 
-			int returnedAmount = testVendingMachine.ClearCoinReturn ();
+			List<Coin> returnedCoins = testVendingMachine.ClearCoinReturn ();
 
-			Assert.AreEqual (5, returnedAmount);
+			Assert.AreEqual (new List<Coin> () { testNickel }, returnedCoins);
 		}
 	}
 }

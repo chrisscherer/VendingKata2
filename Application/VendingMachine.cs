@@ -5,9 +5,15 @@ namespace VendingKataTake2
 {
 	public class VendingMachine
 	{
-		public int DepositedAmount { get; private set; }
+		public List<Coin> DepositedAmount { get; private set; }
 
-		public int CoinReturnAmount { get; private set; }
+		public List<Coin> CoinReturnAmount { get; private set; }
+
+		public VendingMachine ()
+		{
+			DepositedAmount = new List<Coin> ();
+			CoinReturnAmount = new List<Coin> ();
+		}
 
 		public Dictionary<int, int> ValidCoins = new Dictionary<int, int> () {
 			{ 5, 5 },
@@ -26,14 +32,14 @@ namespace VendingKataTake2
 
 		public void ReturnCoins ()
 		{
-			CoinReturnAmount += DepositedAmount;
+			CoinReturnAmount.AddRange (DepositedAmount);
 			ResetDepositedAmount ();
 		}
 
 		//TakeCoinReturnCoins? I wasn't sure what the best name for this method is/was
-		public int ClearCoinReturn ()
+		public List<Coin> ClearCoinReturn ()
 		{
-			int amountToReturn = CoinReturnAmount;
+			List<Coin> amountToReturn = new List<Coin> (CoinReturnAmount);
 			ResetCoinReturnAmount ();
 
 			return amountToReturn;
@@ -41,7 +47,7 @@ namespace VendingKataTake2
 
 		private void AddAmount (Coin coinToAdd)
 		{
-			DepositedAmount += coinToAdd.Size;
+			DepositedAmount.Add (coinToAdd);
 		}
 
 		private bool CoinIsValid (int coinSize, int coinWeight)
@@ -51,12 +57,12 @@ namespace VendingKataTake2
 
 		private void ResetDepositedAmount ()
 		{
-			DepositedAmount = 0;
+			DepositedAmount.Clear ();
 		}
 
 		private void ResetCoinReturnAmount ()
 		{
-			CoinReturnAmount = 0;
+			CoinReturnAmount.Clear ();
 		}
 
 		public static void Main (string[] args)
