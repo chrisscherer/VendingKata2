@@ -27,14 +27,14 @@ namespace VendingKataTake2
 		public void ReturnCoins ()
 		{
 			CoinReturnAmount += DepositedAmount;
-			DepositedAmount = 0;
+			ResetDepositedAmount ();
 		}
 
 		//TakeCoinReturnCoins? I wasn't sure what the best name for this method is/was
 		public int ClearCoinReturn ()
 		{
 			int amountToReturn = CoinReturnAmount;
-			CoinReturnAmount = 0;
+			ResetCoinReturnAmount ();
 
 			return amountToReturn;
 		}
@@ -47,6 +47,16 @@ namespace VendingKataTake2
 		private bool CoinIsValid (int coinDimensions)
 		{
 			return ValidCoins.ContainsKey (coinDimensions);
+		}
+
+		private void ResetDepositedAmount ()
+		{
+			DepositedAmount = 0;
+		}
+
+		private void ResetCoinReturnAmount ()
+		{
+			CoinReturnAmount = 0;
 		}
 
 		public static void Main (string[] args)
