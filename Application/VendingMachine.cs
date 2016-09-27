@@ -88,9 +88,7 @@ namespace VendingKataTake2
 		private void RefundExtraCoins (decimal extraFunds)
 		{
 			while (extraFunds > 0M) {
-				Console.WriteLine (extraFunds);
 				decimal largestCoin = GetLargestCoinIncrement (extraFunds);
-				Console.WriteLine (largestCoin);
 				CoinReturnAmount.Add (new Coin (largestCoin, largestCoin));
 				extraFunds -= largestCoin;
 			}
