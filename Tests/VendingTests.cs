@@ -133,5 +133,16 @@ namespace VendingKataTake2Tests
 
 			Assert.AreEqual (true, purchaseResult);
 		}
+
+		[Test]
+		public void PurchaseProduct_ReturnsFalseIfNotEnoughMoneyHasBeenInserted ()
+		{
+			Coin c = new Coin (25, 25);
+			testVendingMachine.InsertCoin (c);
+
+			bool purchaseResult = testVendingMachine.PurchaseProduct ("Chips");
+
+			Assert.AreEqual (false, purchaseResult);
+		}
 	}
 }
