@@ -69,6 +69,7 @@ namespace VendingKataTake2
 			bool success = false;
 
 			if (GetDepositedTotal () >= GetProductPrice (productName)) {
+				RefundExtraCoins (GetDepositedTotal () - GetProductPrice (productName));
 				ResetDepositedAmount ();
 				success = true;
 			}
@@ -81,6 +82,24 @@ namespace VendingKataTake2
 		public decimal GetDepositedTotal ()
 		{
 			return DepositedAmount.Sum (coin => coin.Size) * .01M;
+		}
+
+		private void RefundExtraCoins (decimal extraFunds)
+		{
+			while (extraFunds > 0M) {
+				if (extraFunds >= .25M) {
+					CoinReturnAmount.Add (new Coin (25, 25));
+					extraFunds -= .25M;
+				} else if (extraFunds >= .10M) {
+					CoinReturnAmount.Add (new Coin (10, 10));
+					extraFunds -= .10M;
+				} else if (extraFunds >= .05M) {
+					CoinReturnAmount.Add (new Coin (5, 5));
+					extraFunds -= .05M;
+				} else {
+					break;
+				}
+			}
 		}
 
 		private void AddAmount (Coin coinToAdd)

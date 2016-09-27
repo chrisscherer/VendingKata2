@@ -17,6 +17,10 @@ namespace VendingKataTake2Tests
 			new Product ("Candy", .65M)
 		};
 
+		Coin testQuarter = new Coin (25, 25);
+		Coin testDime = new Coin (10, 10);
+		Coin testNickel = new Coin (5, 5);
+
 		[SetUp] public void Init ()
 		{
 			testVendingMachine = new VendingMachine ();
@@ -30,8 +34,6 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void InsertCoin_ReturnTrueIfCoinIsNickel ()
 		{
-			Coin testNickel = new Coin (5, 5);
-
 			bool result = testVendingMachine.InsertCoin (testNickel);
 
 			Assert.AreEqual (true, result);
@@ -60,8 +62,6 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void InsertCoin_UpdatesCurrentDepositedAmount ()
 		{
-			Coin testNickel = new Coin (5, 5);
-
 			testVendingMachine.InsertCoin (testNickel);
 
 			Assert.AreEqual (new List<Coin> { testNickel }, testVendingMachine.DepositedAmount);
@@ -79,7 +79,6 @@ namespace VendingKataTake2Tests
 		public void ClearCoinReturn_UpdatesCurrentCoinReturnAmountToZero ()
 		{
 			//Arrange our preconditions to using the Clear Coin Return Method
-			Coin testNickel = new Coin (5, 5);
 			testVendingMachine.InsertCoin (testNickel);
 			testVendingMachine.ReturnCoins ();
 
@@ -93,7 +92,6 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void ClearCoinReturn_ReturnsTheCorrectAmountFromTheCoinReturn ()
 		{
-			Coin testNickel = new Coin (5, 5);
 			testVendingMachine.InsertCoin (testNickel);
 			testVendingMachine.ReturnCoins ();
 
@@ -125,9 +123,8 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void PurchaseProduct_ReturnsTrueIfEnoughMoneyHasBeenInserted ()
 		{
-			Coin c = new Coin (25, 25);
-			testVendingMachine.InsertCoin (c);
-			testVendingMachine.InsertCoin (c);
+			testVendingMachine.InsertCoin (testQuarter);
+			testVendingMachine.InsertCoin (testQuarter);
 
 			bool purchaseResult = testVendingMachine.PurchaseProduct ("Chips");
 
@@ -137,8 +134,7 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void PurchaseProduct_ReturnsFalseIfNotEnoughMoneyHasBeenInserted ()
 		{
-			Coin c = new Coin (25, 25);
-			testVendingMachine.InsertCoin (c);
+			testVendingMachine.InsertCoin (testQuarter);
 
 			bool purchaseResult = testVendingMachine.PurchaseProduct ("Chips");
 
@@ -148,9 +144,8 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void PurchaseProduct_UpdatesDepositedTotalOnSuccessfulPurchase ()
 		{
-			Coin c = new Coin (25, 25);
-			testVendingMachine.InsertCoin (c);
-			testVendingMachine.InsertCoin (c);
+			testVendingMachine.InsertCoin (testQuarter);
+			testVendingMachine.InsertCoin (testQuarter);
 
 			testVendingMachine.PurchaseProduct ("Chips");
 
@@ -160,12 +155,14 @@ namespace VendingKataTake2Tests
 		[Test]
 		public void PurchaseProduct_ReturnsCoinsAbovePurchase ()
 		{
-			Coin c = new Coin (25, 25);
-			testVendingMachine.InsertCoin (c);
-			testVendingMachine.InsertCoin (c);
-			testVendingMachine.InsertCoin (c);
+			//This set up seems necessary to properly test that it will get coin denomonation correct and give back
+			//larger coins before smaller ones.
+			testVendingMachine.InsertCoin (testQuarter);
+			testVendingMachine.InsertCoin (testQuarter);
+			testVendingMachine.InsertCoin (testDime);
+			testVendingMachine.InsertCoin (testNickel);
 
-			testVendingMachine.PurchaseProduct ("Candy");
+			testVendingMachine.PurchaseProduct ("Chips");
 			List<Coin> returnedCoins = testVendingMachine.ClearCoinReturn ();
 
 			Assert.AreEqual (new List<Coin> () { new Coin (10, 10), new Coin (5, 5) }, returnedCoins);
