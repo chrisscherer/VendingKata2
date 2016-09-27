@@ -66,9 +66,18 @@ namespace VendingKataTake2
 
 		public bool PurchaseProduct (string productName)
 		{
-			return GetDepositedTotal () >= GetProductPrice (productName);
+			bool success = false;
+
+			if (GetDepositedTotal () >= GetProductPrice (productName)) {
+				ResetDepositedAmount ();
+				success = true;
+			}
+
+			return success;
 		}
 
+		//Should possible be called GetDepositedAmount, I made a distinction because this is returning a Sum total
+		//where as the DepositedAmount is a list of coins.
 		public decimal GetDepositedTotal ()
 		{
 			return DepositedAmount.Sum (coin => coin.Size) * .01M;
